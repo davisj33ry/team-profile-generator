@@ -12,6 +12,7 @@ const Manager = require("./lib/Manager");
 
 // Inquirer employee prompts
 const teamArray = [];
+// const role = ["Engineer", "Intern", "Manager"];
 const addEmployee = () => {
   console.log(
     "Please follow prompts to add employees. Be careful to select the proper employee role"
@@ -22,7 +23,7 @@ const addEmployee = () => {
         type: "list",
         name: "role",
         message: "Select employee's role type from the following options:",
-        choices: ["Engineer", "Intern", "Manager"],
+        choices: ["engineer", "intern", "manager"],
       },
       {
         type: "input",
@@ -41,12 +42,12 @@ const addEmployee = () => {
         type: "input",
         name: "id",
         message: "Enter employee's ID number",
-        validate: (nameInput) => {
-          if (nameInput !== NaN) {
+        validate: (input) => {
+          if (input !== NaN) {
+            return true;
+          } else {
             console.log("Please enter employee's numberical ID.");
             return false;
-          } else {
-            return true;
           }
         },
       },
@@ -117,7 +118,7 @@ const addEmployee = () => {
     ])
     .then((employeeData) => {
       let employee;
-      let employeeData = {
+      let {
         role,
         employeeName,
         id,
@@ -125,15 +126,15 @@ const addEmployee = () => {
         ghID,
         school,
         officeNumber,
-        completeAddEmployee,
-      };
-      if (role === "Engineer") {
+        completeAddEmployee
+      } = employeeData;
+      if (role === "engineer") {
         employee = new Engineer(employeeName, id, email, ghID);
         console.log(employee);
-      } else if (role === "Intern") {
+      } else if (role === "intern") {
         employee = new Intern(employeeName, id, email, school);
         console.log(employee);
-      } else if (role === "Manager") {
+      } else if (role === "manager") {
         employee = new Manager(employeeName, id, email, officeNumber);
         console.log(employee);
       }
@@ -147,16 +148,14 @@ const addEmployee = () => {
 };
 
 // Write data to index.html file
-const writeFile = data => {
-    fs.writeFile('./dist/index.html', data, err => {
-        if(err) {
-            console.log(err)
-        }else {
-            console.log("Team Profile page successfully created.")
-        }
-    })
+const writeFile = (data) => {
+  fs.writeFile("./dist/index.html", JSON.stringify(data), (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("Team Profile page successfully created.");
+    }
+  });
 };
 
-addEmployee()
-.then(teamArray)
-.then(writeFile)
+addEmployee().then(teamArray).then(writeFile);
