@@ -3,42 +3,39 @@ const showTeam = (team) => {
     return `
     
     <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="./assets/person-workspace.svg" alt="Card image cap">
+    <img class="card-img-top" src="./assets/manager.png" alt="Manager icon">
     <div class="card-body">
-        <h5 class="card-title">${manager.getName()}</h5>
+        <h4 class="card-title">${manager.getName()}</h4>
         <h5 class="card-title">${manager.getRole()}</h5>
         <p class="card-text">Employee ID: ${manager.getID()}</p>
         <p class="card-text"><a href="mailto:${manager.getEmail()}">${manager.getEmail()}</a></p>
         <p class="card-text">Office Number: ${manager.getOfficeNumber()}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>`;
   };
   const generateEngineer = (engineer) => {
     return `
         <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="./assets/braces" alt="Workspace icon" alt="Card image cap">
+  <img class="card-img-top" src="./assets/engineer.png" alt="Engineer icon" alt="Card image cap">
   <div class="card-body">
-    <h5 class="card-title">${engineer.getName()}</h5>
-    <h4 class="card-title">${engineer.getRole()}</h4>
+    <h4 class="card-title">${engineer.getName()}</h4>
+    <h5 class="card-title">${engineer.getRole()}</h5>
     <p class="card-text">Employee ID: ${engineer.getID()}</p>
     <p class="card-text">Email: <a href="mailto:${engineer.getEmail()}">${engineer.getEmail()}</a></p>
     <p class="card-text">Github Handle: ${engineer.getGHID()}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>`;
   };
   const generateIntern = (intern) => {
     return `
         <div class="card" style="width: 18rem;">
-  <img class="card-img-top" src="./assets/book" alt="Workspace icon">
+  <img class="card-img-top" src="./assets/intern.png" alt="Intern icon">
   <div class="card-body">
-    <h5 class="card-title">${intern.getName()}</h5>
-    <h4 class="card-title">${intern.getRole()}</h4>
+    <h4 class="card-title">${intern.getName()}</h4>
+    <h5 class="card-title">${intern.getRole()}</h5>
     <p class="card-text">Employee ID: ${intern.getID()}</p>
     <p class="card-text">Email: <a href="mailto:${intern.getEmail()}">${intern.getEmail()}</a></p>
     <p class="card-text">School: ${intern.getSchool()}</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
   </div>
 </div>
 `;
