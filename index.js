@@ -10,6 +10,9 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
 
+// Require in generateHTML
+const showTeam = require("./src/generateHTML")
+
 // Inquirer employee prompts
 const teamArray = [];
 // const role = ["Engineer", "Intern", "Manager"];
@@ -117,9 +120,7 @@ const addEmployee = () => {
       },
     ])
     .then((employeeData) => {
-      let engineer;
-      let intern;
-      let manager;
+      let employee;
       let {
         role,
         employeeName,
@@ -131,16 +132,16 @@ const addEmployee = () => {
         completeAddEmployee
       } = employeeData;
       if (role === "engineer") {
-        engineer = new Engineer(employeeName, id, email, ghID);
-        console.log(engineer);
+        employee = new Engineer(employeeName, id, email, ghID);
+        console.log(employee);
       } else if (role === "intern") {
-        intern = new Intern(employeeName, id, email, school);
-        console.log(intern);
+        employee = new Intern(employeeName, id, email, school);
+        console.log(employee);
       } else if (role === "manager") {
-        manager = new Manager(employeeName, id, email, officeNumber);
-        console.log(manager);
+        employee = new Manager(employeeName, id, email, officeNumber);
+        console.log(employee);
       }
-      teamArray.push(engineer, intern, manager);
+      teamArray.push(employee);
       if (completeAddEmployee) {
         return addEmployee(teamArray);
       } else {
@@ -151,7 +152,7 @@ const addEmployee = () => {
 
 // Write data to index.html file
 const writeFile = (data) => {
-  fs.writeFile("./src/generateHTML.js", JSON.stringify(data), (err) => {
+  fs.writeFile("./dist/index.html", showTeam(teamArray), (err) => {
     if (err) {
       console.log(err);
     } else {
