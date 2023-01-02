@@ -117,7 +117,9 @@ const addEmployee = () => {
       },
     ])
     .then((employeeData) => {
-      let employee;
+      let engineer;
+      let intern;
+      let manager;
       let {
         role,
         employeeName,
@@ -129,16 +131,16 @@ const addEmployee = () => {
         completeAddEmployee
       } = employeeData;
       if (role === "engineer") {
-        employee = new Engineer(employeeName, id, email, ghID);
-        console.log(employee);
+        engineer = new Engineer(employeeName, id, email, ghID);
+        console.log(engineer);
       } else if (role === "intern") {
-        employee = new Intern(employeeName, id, email, school);
-        console.log(employee);
+        intern = new Intern(employeeName, id, email, school);
+        console.log(intern);
       } else if (role === "manager") {
-        employee = new Manager(employeeName, id, email, officeNumber);
-        console.log(employee);
+        manager = new Manager(employeeName, id, email, officeNumber);
+        console.log(manager);
       }
-      teamArray.push(employee);
+      teamArray.push(engineer, intern, manager);
       if (completeAddEmployee) {
         return addEmployee(teamArray);
       } else {
@@ -149,7 +151,7 @@ const addEmployee = () => {
 
 // Write data to index.html file
 const writeFile = (data) => {
-  fs.writeFile("./dist/index.html", JSON.stringify(data), (err) => {
+  fs.writeFile("./src/generateHTML.js", JSON.stringify(data), (err) => {
     if (err) {
       console.log(err);
     } else {
